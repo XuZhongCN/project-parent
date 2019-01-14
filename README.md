@@ -1,17 +1,17 @@
 # oms-parent
-#### OMS系统，微服务实施方案
+## OMS系统，微服务实施方案
 
-##### SpringCloud
+### SpringCloud
 
-##### SpringBoot
+### SpringBoot
 
-##### MyBatis
+### MyBatis
 
-##### MySql
+### MySql
 
-##### 单点登录，多模块身份认证token
+### 单点登录，多模块身份认证token
 
-##### 按钮级别权限管理
+### 按钮级别权限管理
 
 
 
