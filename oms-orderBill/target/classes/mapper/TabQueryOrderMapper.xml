@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cpscs.omsorderbill.dao.TabQueryOrderMapper">
+    <sql id="queryColumn">tab_edi_945_order.ID,LEFT(ORDER_DATE,10) as ORDER_DATE,LEFT(LOAD_DATE, 10) as LOAD_DATE,LEFT(ETA_DATE, 10) as ETA_DATE,DN_NO,MAIL_NO,tab_edi_945_order.MST_MAIL_NO,NET_NO,PDT_CODE,PDT_TYPE,RECIPIENT,TEL_NO,DESPATCH_CITY,DESTINATION_PROVINCE,DESTINATION_CITY,DESTINATION_COUNTY</sql>
+    <sql id="doubleTableJoin">tab_edi_945_order left join tab_edi_order_send on tab_edi_945_order.MST_MAIL_NO=tab_edi_order_send.MST_MAIL_NO</sql>
+    <resultMap id="allOrderResult" type="com.cpscs.omsorderbill.domain.TabQueryOrder">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result property="orderDate" column="ORDER_DATE"></result>
+        <result property="loadDate" column="LOAD_DATE"></result>
+        <result property="etaDate" column="ETA_DATE"></result>
+        <result property="dnNo" column="DN_NO"></result>
+        <result property="mailNo" column="MAIL_NO"></result>
+        <result property="mstMailNo" column="MST_MAIL_NO"></result>
+        <result property="netNo" column="NET_NO"></result>
+        <result property="pdtCode" column="PDT_CODE"></result>
+        <result property="pdtType" column="PDT_TYPE"></result>
+        <result property="recipient" column="RECIPIENT"></result>
+        <result property="telNo" column="TEL_NO"></result>
+        <result property="despatchCity" column="DESPATCH_CITY"></result>
+        <result property="destinationProvince" column="DESTINATION_PROVINCE"></result>
+        <result property="destinationCity" column="DESTINATION_CITY"></result>
+        <result property="destinationCounty" column="DESTINATION_COUNTY"></result>
+    </resultMap>
+    <select id="queryAllOrder" resultMap="allOrderResult">
+        SELECT
+        <include refid="queryColumn"/>
+        FROM
+        <include refid="doubleTableJoin"/>
+        <where>
+            tab_edi_order_send.ORDER_KIND=0
+        </where>
+        <if test="startIndex>=0">
+            limit #{startIndex},#{pageSize}
+        </if>
+        <if test="startIndex&lt;0">
+            limit 0,8000
+        </if>
+    </select>
+    <select id="queryCount" resultType="java.lang.Long">
+
+        select 8000
+
+        <!--
+        select count(*) from
+        tab_edi_order_send
+        <where>
+            tab_edi_order_send.ORDER_KIND=0
+        </where>-->
+    </select>
+    <update id="updateOneOrder" parameterType="tabQueryOrder">
+        update tab_edi_945_order
+        <trim prefix="set" suffixOverrides="," suffix="">
+            <if test="orderDate!=null and orderDate!=''">
+                ORDER_DATE=#{orderDate},
+            </if>
+            <if test="loadDate!=null and loadDate!=''">
+                LOAD_DATE=#{loadDate},
+            </if>
+            <if test="etaDate!=null and etaDate!=''">
+                ETA_DATE=#{etaDate},
+            </if>
+            <if test="dnNo!=null and dnNo!=''">
+                DN_NO=#{dnNo},
+            </if>
+            <if test="mstMailNo!=null and mstMailNo!=''">
+                MST_MAIL_NO=#{mstMailNo},
+            </if>
+            <if test="netNo!=null and netNo!=''">
+                NET_NO=#{netNo},
+            </if>
+            <if test="pdtCode!=null and pdtCode!=''">
+                PDT_CODE=#{pdtCode},
+            </if>
+            <if test="pdtType!=null and pdtType!=''">
+                PDT_TYPE=#{pdtType},
+            </if>
+            <if test="recipient!=null and recipient!=''">
+                RECIPIENT=#{recipient},
+            </if>
+            <if test="telNo!=null and telNo!=''">
+                TEL_NO=#{telNo},
+            </if>
+            <if test="despatchCity!=null and despatchCity!=''">
+                DESPATCH_CITY=#{despatchCity},
+            </if>
+            <if test="destinationProvince!=null and destinationProvince!=''">
+                DESTINATION_PROVINCE=#{destinationProvince},
+            </if>
+            <if test="destinationCity!=null and destinationCity!=''">
+                DESTINATION_CITY=#{destinationCity},
+            </if>
+            <if test="destinationCounty!=null and destinationCounty!=''">
+                DESTINATION_COUNTY=#{destinationCounty},
+            </if>
+        </trim>
+            <where>
+                ID=#{id}
+            </where>
+
+    </update>
+
+    <insert id="insertOneOrder">
+        insert into tab_edi_945_order
+        <trim prefix="(" suffixOverrides="," suffix=")" >
+            <if test="id!=null and id!=''">
+                ID,
+            </if>
+            <if test="orderDate!=null and orderDate!=''">
+                ORDER_DATE,
+            </if>
+            <if test="loadDate!=null and loadDate!=''">
+                LOAD_DATE,
+            </if>
+            <if test="etaDate!=null and etaDate!=''">
+                ETA_DATE,
+            </if>
+            <if test="dnNo!=null and dnNo!=''">
+                DN_NO,
+            </if>
+            <if test="mailNo!=null and mailNo!=''">
+                MAIL_NO,
+            </if>
+            <if test="mstMailNo!=null and mstMailNo!=''">
+                MST_MAIL_NO,
+            </if>
+            <if test="netNo!=null and netNo!=''">
+                NET_NO,
+            </if>
+            <if test="pdtCode!=null and pdtCode!=''">
+                PDT_CODE,
+            </if>
+            <if test="pdtType!=null and pdtType!=''">
+                PDT_TYPE,
+            </if>
+            <if test="recipient!=null and recipient!=''">
+                RECIPIENT,
+            </if>
+            <if test="telNo!=null and telNo!=''">
+                TEL_NO,
+            </if>
+            <if test="despatchCity!=null and despatchCity!=''">
+                DESPATCH_CITY,
+            </if>
+            <if test="destinationProvince!=null and destinationProvince!=''">
+                DESTINATION_PROVINCE,
+            </if>
+            <if test="destinationCity!=null and destinationCity!=''">
+                DESTINATION_CITY,
+            </if>
+            <if test="destinationCounty!=null and destinationCounty!=''">
+                DESTINATION_COUNTY,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffixOverrides="," suffix=")" >
+            <if test="id!=null and id!=''">
+                #{id},
+            </if>
+            <if test="orderDate!=null and orderDate!=''">
+                #{orderDate},
+            </if>
+            <if test="loadDate!=null and loadDate!=''">
+                #{loadDate},
+            </if>
+            <if test="etaDate!=null and etaDate!=''">
+                #{etaDate},
+            </if>
+            <if test="dnNo!=null and dnNo!=''">
+                #{dnNo},
+            </if>
+            <if test="mailNo!=null and mailNo!=''">
+                #{mailNo},
+            </if>
+            <if test="mstMailNo!=null and mstMailNo!=''">
+                #{mstMailNo},
+            </if>
+            <if test="netNo!=null and netNo!=''">
+                #{netNo},
+            </if>
+            <if test="pdtCode!=null and pdtCode!=''">
+                #{pdtCode},
+            </if>
+            <if test="pdtType!=null and pdtType!=''">
+                #{pdtType},
+            </if>
+            <if test="recipient!=null and recipient!=''">
+                #{recipient},
+            </if>
+            <if test="telNo!=null and telNo!=''">
+                #{telNo},
+            </if>
+            <if test="despatchCity!=null and despatchCity!=''">
+                #{despatchCity},
+            </if>
+            <if test="destinationProvince!=null and destinationProvince!=''">
+                #{destinationProvince},
+            </if>
+            <if test="destinationCity!=null and destinationCity!=''">
+                #{destinationCity},
+            </if>
+            <if test="destinationCounty!=null and destinationCounty!=''">
+                #{destinationCounty},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deleteOneOrder" parameterType="java.lang.String">
+        delete from tab_edi_945_order where ID=#{id,jdbcType=VARCHAR}
+    </delete>
+</mapper>

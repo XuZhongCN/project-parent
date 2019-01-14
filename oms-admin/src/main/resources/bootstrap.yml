@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: api-admin
+  cloud:
+    config:
+      discovery:
+       service-id: oms-config  #表示注册中心config-server的服务名
+       enabled: true           #表示开启通过服务名来访问config-server
+      profile: dev 
+      label: master
+      fail-fast: true          #启动失败时能够快速响应
+    retry:
+      initial-interval: 1000        #首次重试间隔时间，默认1000毫秒
+      multiplier: 1.1D              #下一次重试间隔时间的乘数，比如开始1000，下一次就是1000*1.1=1100
+      max-interval: 2000            #最大重试时间，默认2000
+      max-attempts: 6               #最大重试次数，默认6次
+#安全保护
+spring.cloud.config.username: springcloud
+spring.cloud.config.password: springcloud
+management.security.enabled: false  #动态刷新配置 ---需要忽略权限拦截
+eureka:
+  instance:
+    prefer-ip-address:  true
+    instance-id: ${spring.application.name}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/

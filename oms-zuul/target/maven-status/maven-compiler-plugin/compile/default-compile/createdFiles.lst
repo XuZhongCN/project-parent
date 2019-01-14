@@ -1,0 +1,6 @@
+com\cpscs\omszuul\controller\LoginController.class
+com\cpscs\omszuul\service\consumer\RedisService.class
+com\cpscs\omszuul\filter\AccessFilter.class
+com\cpscs\omszuul\prc\admin\MenuService.class
+com\cpscs\omszuul\service\consumer\fallback\RedisServiceFallback.class
+com\cpscs\omszuul\ZuulServiceApplication.class

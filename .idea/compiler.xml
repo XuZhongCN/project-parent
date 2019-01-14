@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="oms-admin" />
+        <module name="oms-base" />
+        <module name="oms-common" />
+        <module name="oms-config" />
+        <module name="oms-eureka" />
+        <module name="oms-job" />
+        <module name="oms-orderBill" />
+        <module name="oms-redis" />
+        <module name="oms-sso" />
+        <module name="oms-web" />
+        <module name="oms-zuul" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="oms-admin" target="1.8" />
+      <module name="oms-base" target="1.8" />
+      <module name="oms-cms" target="1.8" />
+      <module name="oms-common" target="1.8" />
+      <module name="oms-config" target="1.8" />
+      <module name="oms-eureka" target="1.8" />
+      <module name="oms-job" target="1.8" />
+      <module name="oms-orderBill" target="1.8" />
+      <module name="oms-parent" target="1.8" />
+      <module name="oms-redis" target="1.8" />
+      <module name="oms-sso" target="1.8" />
+      <module name="oms-web" target="1.8" />
+      <module name="oms-zuul" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="oms-admin" options="-parameters" />
+      <module name="oms-base" options="-parameters" />
+      <module name="oms-cms" options="-parameters" />
+      <module name="oms-common" options="-parameters" />
+      <module name="oms-config" options="-parameters" />
+      <module name="oms-eureka" options="-parameters" />
+      <module name="oms-job" options="-parameters" />
+      <module name="oms-orderBill" options="-parameters" />
+      <module name="oms-redis" options="-parameters" />
+      <module name="oms-sso" options="-parameters" />
+      <module name="oms-zuul" options="-parameters" />
+    </option>
+  </component>
+</project>

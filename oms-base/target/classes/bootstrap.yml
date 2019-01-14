@@ -1,0 +1,29 @@
+spring:
+  application:
+      name: api-base
+  cloud:
+    config:
+        discovery:
+            enabled: true
+            service-id: oms-config
+        fail-fast: true
+        label: master
+        password: springcloud
+        profile: dev
+        username: springcloud
+    retry:
+        initial-interval: 1000
+        max-attempts: 6
+        max-interval: 2000
+        multiplier: 1.1
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8001/eureka/
+    instance:
+        instance-id: ${spring.application.name}
+        prefer-ip-address: true
+management:
+    security:
+        enabled: false
